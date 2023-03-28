@@ -1,4 +1,3 @@
-import "./App.css";
 import Start from "./Start";
 import styled from "styled-components";
 
