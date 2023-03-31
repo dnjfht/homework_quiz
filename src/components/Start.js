@@ -5,6 +5,7 @@ import styled from "styled-components";
 import img01 from "../img/img01.png";
 import { useSelector, useDispatch } from "react-redux";
 import { changeName } from "../redux/modules/user";
+import { useNavigate } from "react-router-dom";
 
 const QuizWrap = styled.div`
   width: 320px;
@@ -91,6 +92,8 @@ export default function Start() {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   // const [name, setName] = useState("르탄이");
 
   const textInput = useRef(null);
@@ -104,6 +107,8 @@ export default function Start() {
     dispatch(changeName(textInput.current.value));
 
     textInput.current.value = "";
+
+    navigate("/quiz");
   };
 
   return (
