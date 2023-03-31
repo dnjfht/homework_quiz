@@ -1,8 +1,10 @@
 import React from "react";
 import { useRef } from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import styled from "styled-components";
-import img01 from "./img/img01.png";
+import img01 from "../img/img01.png";
+import { useSelector, useDispatch } from "react-redux";
+import { changeName } from "../redux/modules/user";
 
 const QuizWrap = styled.div`
   width: 320px;
@@ -31,9 +33,17 @@ const ImageWrap = styled.img`
 `;
 
 const Title = styled.h3`
+  width: 100%;
+
   margin-top: 20px;
 
   text-align: center;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 `;
 
 const InputWrap = styled.div`
@@ -76,7 +86,12 @@ const StartButton = styled.button`
 `;
 
 export default function Start() {
-  const [name, setName] = useState("르탄이");
+  const userName = useSelector((state) => state.user.nickName);
+  console.log(userName);
+
+  const dispatch = useDispatch();
+
+  // const [name, setName] = useState("르탄이");
 
   const textInput = useRef(null);
   console.log(textInput);
@@ -84,7 +99,9 @@ export default function Start() {
   const handleChangename = (event) => {
     event.preventDefault();
 
-    setName(textInput.current.value);
+    // setName(textInput.current.value);
+
+    dispatch(changeName(textInput.current.value));
 
     textInput.current.value = "";
   };
@@ -94,7 +111,28 @@ export default function Start() {
       <Container>
         <ImageWrap src={img01} alt="르탄이" />
 
-        <Title>나는 {name}에 대해 얼마나 알고 있을까?</Title>
+        <Title>
+          나는
+          <span
+            style={{
+              width: "90px",
+              height: "34px",
+              marginLeft: "10px",
+              backgroundColor: "rgb(213, 210, 247)",
+              borderRadius: "50px",
+
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+
+              fontSize: "16px",
+            }}
+          >
+            {userName}
+          </span>
+          에 대해 얼마나 알고 있을까?
+        </Title>
 
         <InputWrap>
           <NameInput

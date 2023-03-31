@@ -1,4 +1,4 @@
-import Start from "./Start";
+import Router from "./shared/Router";
 import styled from "styled-components";
 
 const Wrap = styled.div`
@@ -14,7 +14,7 @@ const Wrap = styled.div`
 function App() {
   return (
     <Wrap>
-      <Start />
+      <Router />
     </Wrap>
   );
 }
