@@ -25,6 +25,59 @@ const Container = styled.div`
   align-items: center;
 `;
 
+const ScoreTitle = styled.h3`
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const WrapScore = styled.div`
+  margin-top: 40px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const Commentary = styled.p`
+  font-size: 15px;
+  font-weight: bold;
+`;
+
+const CommentaryButton = styled.button`
+  width: 100%;
+  padding: 10px;
+  margin-top: 40px;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 1px solid #b2adeb;
+  border-radius: 50px;
+
+  font-size: 14px;
+  color: #4d4d50;
+  font-weight: 600;
+
+  outline: none;
+`;
+
+const GoHomeButton = styled.button`
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 1px solid #b2adeb;
+  border-radius: 50px;
+
+  font-size: 14px;
+  color: #4d4d50;
+  font-weight: 600;
+
+  outline: none;
+`;
+
 export default function Score() {
   const navigate = useNavigate();
 
@@ -45,22 +98,65 @@ export default function Score() {
   return (
     <ScoreWrap>
       <Container>
-        <h3>
-          {nickName} 퀴즈에 대한 내 점수는 <br />
-          {score}점
-        </h3>
+        <ScoreTitle>
+          <span
+            style={{
+              width: "90px",
+              height: "40px",
+              marginBottom: "10px",
+              backgroundColor: "rgb(213, 210, 247)",
+              borderRadius: "50px",
 
-        <p>우와! 우린 참 친해요!</p>
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
 
-        <button>{nickName}에게 한 마디</button>
+              fontSize: "17px",
+            }}
+          >
+            {nickName}
+          </span>{" "}
+          퀴즈에 대한 내 점수는?
+          <WrapScore>
+            <span
+              style={{
+                width: "90px",
+                height: "40px",
+                backgroundColor: "rgb(213, 210, 247)",
+                borderRadius: "50px",
 
-        <button
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+
+                fontSize: "24px",
+              }}
+            >
+              {score}
+            </span>
+            점
+          </WrapScore>
+        </ScoreTitle>
+
+        <Commentary>
+          {score > 90
+            ? `우와! 우린 참 친해요!`
+            : score > 70
+            ? `조금만 더 친해지면 될 것 같아요!`
+            : `우리 서로에 관해서 알아가볼까요?`}
+        </Commentary>
+
+        <CommentaryButton>{nickName}에게 한 마디</CommentaryButton>
+
+        <GoHomeButton
           onClick={() => {
             navigate("/");
           }}
         >
           시작 화면으로 이동
-        </button>
+        </GoHomeButton>
       </Container>
     </ScoreWrap>
   );
